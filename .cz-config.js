@@ -36,6 +36,7 @@ module.exports = {
     {name: 'video-conferencing-service'},
     {name: 'audit-service'},
     {name: 'sandbox'},
+    {name: 'chat-service'},
   ],
 
   appendBranchNameToCommitMessage: false,
