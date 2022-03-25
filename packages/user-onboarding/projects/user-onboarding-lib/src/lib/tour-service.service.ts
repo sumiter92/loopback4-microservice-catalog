@@ -1,5 +1,5 @@
 import {TourStoreServiceService} from './tour-store-service.service';
-import {Injectable} from '@angular/core';
+import {Type, ComponentFactoryResolver, ViewContainerRef, Injectable } from "@angular/core";
 import Shepherd from 'shepherd.js';
 import {
   Tour,
@@ -20,6 +20,8 @@ import {DEFAULT_MAX_WAIT_TIME, INTERVAL} from '../models/constants';
   providedIn: 'root',
 })
 export class TourServiceService {
+  private r: ComponentFactoryResolver;
+  private viewContainerRef: ViewContainerRef;
   private readonly tourComplete = new Subject<TourComplete>();
   tourComplete$ = this.tourComplete.asObservable();
   private readonly tourStepChange = new Subject<TourStepChange>();
@@ -275,6 +277,7 @@ export class TourServiceService {
         sessionId: this.tourStoreService.getSessionId(),
       })
       .subscribe(tourInstance => {
+        console.log(tourInstance,'tourInstance');
         this.checkAndThrowError(tourInstance);
         if (params) {
           let steps = JSON.stringify(tourInstance.tourSteps);
@@ -688,4 +691,30 @@ export class TourServiceService {
       }
     });
   }
+private parseComponents(components: Type<unknown>[]){
+    // return new Promise((resolve, reject)=>{
+      const promises = components.map((component)=>{
+        return new Promise((res,rej)=>{
+            setTimeout(() => {
+                //create the component dynamically
+                const factory = this.r.resolveComponentFactory(component);
+                // let comp: ComponentRef<MessagesComponent> =
+                //   this.viewContainerRef.createComponent(factory);
+                const comp = this.viewContainerRef.createComponent(factory);
+                //in case you also need to inject an input to the child, 
+                //like the windows reference 
+                console.log(comp.location,'nativeComp2');
+                console.log(comp.location.nativeElement,'nativeComp');
+                console.log(comp.location.nativeElement.innerHTML,'innerHtml');
+                console.log(comp.location.nativeElement.innerText,'innerText');
+                res(comp.location.nativeElement);
+            })
+        // })
+      // })
+      
+    });
+  });
+  return Promise.all(promises);
+}
+
 }

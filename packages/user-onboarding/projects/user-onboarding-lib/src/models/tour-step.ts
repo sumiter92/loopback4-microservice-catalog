@@ -5,7 +5,7 @@ export interface TourStep {
   nextStepId: string;
   prevStepId: string;
   title?: string;
-  text: string;
+  text: string | unknown;
   arrow?: boolean;
   attachTo?: {
     element: string | Element;
