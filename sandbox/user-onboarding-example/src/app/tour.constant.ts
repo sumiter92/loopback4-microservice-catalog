@@ -1,4 +1,5 @@
 import {prefix, suffix, TourStep} from '@sourceloop/user-onboarding-client';
+import { MessagesComponent } from "./messages/messages.component";
 
 const NEXT_BUTTON_CLASS = 'shepherd-button-next';
 const SKIP_BUTTON_CLASS = 'shepherd-button-skip';
@@ -86,12 +87,13 @@ export const DASHBOARD_TOUR_STEPS: TourStep[] = [
     id: DashboardTourSteps.Step1,
     prevStepId: DashboardTourSteps.Step1,
     nextStepId: DashboardTourSteps.Step2,
-    text: `
-      <div class="tour-step">Step 1 of 5</div>
-      <div class="tour-title">Step 1</div>
-      <div class="tour-description">
-      Sample Example for tour steps
-      </div>`,
+    // text: `
+    //   <div class="tour-step">Step 1 of 5</div>
+    //   <div class="tour-title">Step 1</div>
+    //   <div class="tour-description">
+    //   Sample Example for tour steps
+    //   </div>`,
+    text:MessagesComponent,
     buttons: BUTTONS_FIRST_STEP,
     attachTo: {
       element: '.dashboard-tour-step1',
@@ -221,12 +223,13 @@ export const DEVS_TOUR_STEPS: TourStep[] = [
     id: DevsTourSteps.Step1,
     prevStepId: DevsTourSteps.Step1,
     nextStepId: DevsTourSteps.Step2,
-    text: `
-      <div class="tour-step">Step 1 of 3</div>
-      <div class="tour-title">Step 1</div>
-      <div class="tour-description">
-      Sample Example for tour steps
-      </div>`,
+    // text: `
+    //   <div class="tour-step">Step 1 of 3</div>
+    //   <div class="tour-title">Step 1</div>
+    //   <div class="tour-description">
+    //   Sample Example for tour steps
+    //   </div>`,
+    text:MessagesComponent,
     buttons: BUTTONS_FIRST_STEP,
     attachTo: {
       element: '.dev-tour-step1',
